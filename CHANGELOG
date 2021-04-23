@@ -1,0 +1,47 @@
+Changelog
+---------
+
+What's new in SRTI-browser 1.0.0 ? 18-Aug-2017
+
+  General Improvements
+
+    o Added Molecular Autopsy data for 50 cases
+
+  Minor Changes
+
+    o Eliminated Cohort column in HTML table as now is redundant with tabs
+    o "platform" nomneclature has been substituted with "cohort". We have 'cg|illumina|molau'
+    o Adopted Semantic Versioning
+
+
+---------------------------------------------------------------------------
+
+What's new in SRTI-browser 0.3 ? 04-Jul-2017
+
+  General Improvements
+
+    o None
+
+  Minor Changes
+
+    o DB changes
+    o Changes in the man page.
+
+---------------------------------------------------------------------------
+
+What's new in SRTI-browser 0.2 ? 18-Nov-2016
+
+  General Improvements
+
+    o None
+
+  Minor Changes
+
+    o Changes in log printing.
+    o Changes in the man page.
+
+---------------------------------------------------------------------------
+
+What's new in SRTI-browser 0.1 ? 11-03-2016
+
+    o 1st version

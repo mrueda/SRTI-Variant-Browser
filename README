@@ -1,0 +1,131 @@
+Installation Instructions
+-------------------------
+SRTI browser is a Perl script and thus it does not require any prior "compilation". 
+However, to make it work you will need to install it as a Virtual host via apache2 and perform other tricks.
+
+
+System Requirements
+-------------------
+- Ideally a Ubuntu-like distribution.
+- RAM >= 4GB
+- At least 1 cores (ideally i7 or Xeon).
+- At least 250GB HDD.
+- Perl >= 5.18 + Mojolicius
+- Apache (CGI/APache)
+
+Useful commands for installation
+-------------------
+sudo apt-get install apache2
+
+cd /var/www
+sudo tar -xvf browser-0.4.0.tar.gz
+tar -xvf browser-0.4.0.tar.gz
+ln -s browser-0.4.0 browser
+
+cd browser
+sudo chmod -R 666 data/ log/
+
+sudo cp apache/browser.conf /etc/apache2/sites-available/
+cd /etc/apache2/sites-available/ ; sudo a2ensite browser.conf
+sudo a2dissite 000-default.conf
+sudo a2enmod cgi
+sudo a2enmod rewrite
+
+sudo apt-get install cpanminus
+cpanm --sudo Mojolicious::Lite
+cpanm --sudo DBI
+cpanm --sudo DBD::SQLite
+
+sudo systemctl restart apache2
+
+# If you want to install php (Optional)
+sudo apt-get install php
+sudo apt-get install php-curl
+sudo apt-get install libapache2-mod-php
+
+
+                        README file for SRTI-browser 0.4.0
+---------------------------------------------------------------------------
+
+What is the SRTI-browser?
+------------------
+SRTI-browser is a webserver that utilizes an SQL-like (SQLite) DB to display user queries on Scripps data (e.g., Wellderly project).
+
+Common errors: Symptoms and treatment
+-------------------------------------
+
+    o DBD::SQLite::st execute failed: called with 1 bind variables when 0 are needed at BROWSER/DB.pm line 189. Probably not all arguments as passed well when loading new DB object
+    o Google fonts not loading. Use //foo instead of http://foo. This is because the request come as http, when the page is https. Same applies for Google Maps.
+    o If searches based on SQLite3 take more than a second, then it's likely that the db is broken. Rebuild
+    o Permissions in log/ must be 666 
+
+
+Istalllation Notes 
+------------------
+ - The version changes with VCF changes.
+ - Google custom search works in my machine because we're getting the ones from genomics.scripps.edu/browser
+
+ - sendmail installation for contact form
+   # http://www.flogiston.net/blog/2009/05/11/sendmail-painfully-slow-on-ubuntu/
+   in /etc/hosts
+   127.0.1.1       genomics-s1 wellderlyweb.scripps.edu genomics-s1
+   Then in /etc/mail/sendmail.mc change DAEMON_OPTIONS lines from 127.0.0.1 to 127.0.1.1
+   cat /var/log/apache2/error.log
+   cat /var/log/apache2/access.log
+   sudo cat /var/mail/www-data
+
+ - php5 checks:
+    Version: dpkg --list | grep php
+ 
+ - Using Port 80 (default).
+   - if you want that another machine from the LAN uses browser.com you must change /etc/hosts
+
+ - Nomenclature of vcfs do not contain version in order to avoid complicated queries (or symbolink links)
+    Version is in header
+
+ - The server I/O is gzipped via .htaccess
+
+ - .htaccess is used so that Mojolicius gets / instead of index.pl
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+
+ - The href links can be activated with a variable
+
+ - dataTables reads cg.json and illumina.json files without "\n" (i.e., wc -l == 0)
+ 
+ - VCF: CG DEL were merged in v0.1. That's why got > 511 individuals
+        INDEL is everything that is not SNP in Illumina
+
+ - JSON: For the sake of similarity we only have SNP, DEL, INS and SUB in Illumina and CG, yet SUB > 1 should be delins
+
+ - For production servers Mojolicius people recomends hypnotoad (morbo was for deployment). In order to use that, apache needs to be reconfigured as a reverse proxy
+
+ - CG: pigz -d -c  chr*/c*json*z | LC_ALL=C grep -F -c _id
+271519457
+ - Illumina
+    pigz -d -c  c*json*z | LC_ALL=C grep -F -c _id
+25581842
+
+  - About N/N
+    - Illumina had N=163 
+    - Complete Genomics
+
+  - The results were labelled as /results instead of /search yet search makes sense in GET queries
+  - tabix only works when we're out of TSRI network
+
+Testing the Code
+----------------
+  - I am not using any CPAN's module to test it. Whenever I modified the code I make sure via web debugging or external file.
+
+Speed
+----------------
+  - Front-End and Back-End are part of the same application. Expected Request Per Second (RPS) are quite low. Maximum 100 requests per day. 
+  - Apache / CGI works fine ( > 15 concurrent RPS tolerated). 
+    ab -n 1000 -c 20 http://localhost:80/ the limit is the twitter app (without it it can get 300 RPS)
+    My results converged when 200 requests/second.
+    Twitter feed, google analytics and htaccess do not affact speed
+  - The index page, as well as ga4gh as results are dynamic. The rest of the pages are static.
+
+Perl Updates
+----------------
+On Aug 2nd 2016 I upgraded CPAN.pm and Perl in both stark.scripps.edu and wellderlyweb.scripps.edu

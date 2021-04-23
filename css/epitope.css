@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.break-word {
+  word-wrap: break-word;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+            color: rgb(119, 114, 114);
+} 
+.btn.nohover:hover {
+  color: white;
+  background-color : #0A95BE;
+}

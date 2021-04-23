@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<title>SRTI Variant Browser - Contact Us</title>		
+		<meta name="keywords" content="HTML5" />
+                <meta name="description" content="SRTI Variant Browser">
+                <meta name="author" content="mrueda@scripps.edu">
+                <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Web Fonts  -->
+		<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Libs CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="vendor/owl-carousel/owl.carousel.css" media="screen">
+		<link rel="stylesheet" href="vendor/owl-carousel/owl.theme.css" media="screen">
+		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" media="screen">
+		<link rel="stylesheet" href="vendor/isotope/jquery.isotope.css" media="screen">
+		<link rel="stylesheet" href="vendor/mediaelement/mediaelementplayer.css" media="screen">
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="css/theme.css">
+		<link rel="stylesheet" href="css/theme-elements.css">
+		<link rel="stylesheet" href="css/theme-blog.css">
+		<link rel="stylesheet" href="css/theme-shop.css">
+		<link rel="stylesheet" href="css/theme-animate.css">
+
+		<!-- Responsive CSS -->
+		<link rel="stylesheet" href="css/theme-responsive.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="css/skins/default.css">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Head Libs -->
+		<script src="vendor/modernizr.js"></script>
+
+		<!--[if IE]>
+			<link rel="stylesheet" href="css/ie.css">
+		<![endif]-->
+
+		<!--[if lte IE 8]>
+			<script src="vendor/respond.js"></script>
+		<![endif]-->
+
+	</head>
+	<body>
+
+		<div class="body">
+			<header id="header">
+				<div class="container">
+					<h1 class="logo">
+                                                <a href="http://scripps.edu">
+							<img alt="SRTI" width="250" data-sticky-width="200" data-sticky-height="40" src="img/scripps-logo_black.png">
+						</a>
+					</h1>
+					<div class="search">
+						<form id="searchForm" action="page-search-results.html" method="get">
+							<div class="input-group">
+								<input type="text" class="form-control search" name="q" id="q" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit"><i class="icon icon-search"></i></button>
+								</span>
+							</div>
+						</form>
+					</div>
+					<nav>
+						<ul class="nav nav-pills nav-top">
+							<li class="phone">
+								<span><i class="icon icon-phone"></i> (858) 554-5708</span>
+							</li>
+						</ul>
+					</nav>
+					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+						<i class="icon icon-bars"></i>
+					</button>
+				</div>
+                                 <div class="navbar-collapse nav-main-collapse collapse">
+                                        <div class="container">
+                                                <ul class="social-icons">
+                                                      <li class="facebook"><a href="https://www.facebook.com/ScrippsResearchInstitute" target="_blank" title="Facebook">Facebook</a></li>
+                                                        <li class="linkedin"><a href="https://www.linkedin.com/school/the-scripps-research-institute" target="_blank" title="Linkedin">Linkedin</a></li>
+                                                </ul>
+                                                <nav class="nav-main mega-menu">
+                                                        <ul class="nav nav-pills nav-main" id="mainMenu">
+							        <li>
+                                                                        <a href="http://10.40.129.44:81"><i class="icon icon-home"></i>Home</a>
+                                                                </li>
+                                                                <li>
+                                                                         <a href="ga4gh">GA4GH</a>
+                                                                </li>
+
+                                                                <li>
+                                                                        <a href="page-help.html">Help</a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="page-faq.html">FAQ</a>
+                                                                </li>
+
+								<li class="dropdown active">
+									<a class="dropdown-toggle" href="#">
+										Contact Us
+										<i class="icon icon-angle-down"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="contact-us.html">SRTI</a></li>
+									</ul>
+								</li>
+                                                        </ul>
+                                                </nav>
+                                        </div>
+                                </div>
+
+				</div>
+			</header>
+
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<h2><strong>Contact</strong> Us</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Google Maps -->
+				<div id="googlemaps" class="google-map"></div>
+
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-6">
+
+							<div class="alert alert-success hidden" id="contactSuccess">
+								<strong>Success!</strong> Your message has been sent to us.
+							</div>
+
+							<div class="alert alert-danger hidden" id="contactError">
+								<strong>Error!</strong> There was an error sending your message.
+							</div>
+
+							<form id="contactForm" action="php/contact-form.php" method="POST">
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-6">
+											<label>Your name *</label>
+											<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name">
+										</div>
+										<div class="col-md-6">
+											<label>Your email address *</label>
+											<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<label>Subject</label>
+											<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<label>Message *</label>
+											<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" id="message"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<input type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+
+							<h4 class="push-top">Get in <strong>touch</strong></h4>
+							<p>Feel free to contact us should you have any concern or question.</p>
+
+							<hr />
+
+							<h4>The <strong>Institute</strong></h4>
+							<ul class="list-unstyled">
+								<li><i class="icon icon-map-marker"></i> <strong>Address:</strong> &nbsp; 3344 North Torrey Pines Court Suite 300, La Jolla, CA 92037, United States</li>
+								<li><i class="icon icon-phone"></i> <strong>Phone:</strong> (858) 554-5708</li>
+								<li><i class="icon icon-envelope"></i> <strong>Email:</strong> <a href="mailto:genomics@scripps.edu">genomics@scripps.edu</a></li>
+							</ul>
+
+							<hr />
+
+							<h4><strong>Hours</strong> of operation</h4>
+							<ul class="list-unstyled">
+								<li><i class="icon icon-time"></i> Monday - Friday: 9am to 5pm</li>
+								<li><i class="icon icon-time"></i> Saturday - Sunday:  Closed</li>
+							</ul>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="footer-ribbon">
+							<span>Get in Touch</span>
+						</div>
+						<div class="col-md-3">
+							<div class="newsletter">
+								<h4>Newsletter</h4>
+								<p>Keep up with our latest advances in research. Subscribe to our newsletter</p>
+			
+								<div class="alert alert-success hidden" id="newsletterSuccess">
+									<strong>Success!</strong> You've been added to our email list.
+								</div>
+			
+								<div class="alert alert-danger hidden" id="newsletterError"></div>
+			
+								<form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
+									<div class="input-group">
+										<input class="form-control" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Go!</button>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-md-3">
+						</div>
+						<div class="col-md-4">
+							<div class="contact-details">
+								<h4>Contact Us</h4>
+								<ul class="contact">
+									<li><p><i class="icon icon-map-marker"></i> <strong>Address:</strong> 3344 North Torrey Pines Court Suite 300, La Jolla, CA 92037, United States</p></li>
+									<li><p><i class="icon icon-phone"></i> <strong>Phone:</strong> (123) 456-7890</p></li>
+									<li><p><i class="icon icon-envelope"></i> <strong>Email:</strong> <a href="mailto:genomics@scripps.edu">genomics@scripps.edu</a></p></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<h4>Follow Us</h4>
+							<div class="social-icons">
+								<ul class="social-icons">
+                                                      <li class="facebook"><a href="https://www.facebook.com/ScrippsResearchInstitute" target="_blank" title="Facebook">Facebook</a></li>
+                                                        <li class="linkedin"><a href="https://www.linkedin.com/school/the-scripps-research-institute" target="_blank" title="Linkedin">Linkedin</a></li>
+								</ul>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-1">
+								<a href="." class="logo">
+								</a>
+							</div>
+							<div class="col-md-7">
+								<p>© Copyright 2014. All Rights Reserved.</p>
+							</div>
+							<div class="col-md-4">
+								<nav id="sub-menu">
+									<ul>
+										<li><a href="page-faq.html">FAQ's</a></li>
+										<li><a href="contact-us.html">Contact</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Libs -->
+		<script src="vendor/jquery.js"></script>
+                <script src="js/main.js"></script>
+		<script src="vendor/jquery.appear.js"></script>
+		<script src="vendor/jquery.easing.js"></script>
+		<script src="vendor/jquery.cookie.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="vendor/jquery.validate.js"></script>
+		<script src="vendor/jquery.stellar.js"></script>
+		<script src="vendor/jquery.knob.js"></script>
+		<script src="vendor/jquery.gmap.js"></script>
+		<script src="vendor/isotope/jquery.isotope.js"></script>
+		<script src="vendor/owl-carousel/owl.carousel.js"></script>
+		<script src="vendor/jflickrfeed/jflickrfeed.js"></script>
+		<script src="vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="vendor/mediaelement/mediaelement-and-player.js"></script>
+		
+		<!-- Theme Initializer -->
+		<script src="js/theme.plugins.js"></script>
+		<script src="js/theme.js"></script>
+
+		<!-- Current Page JS -->
+		<script src="js/views/view.contact.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="js/custom.js"></script>
+    
+                <!-- Custom SRTI -->
+
+		<script src="//maps.google.com/maps/api/js?sensor=false"></script>
+		<script>
+
+			/*
+			Map Settings
+
+				Find the Latitude and Longitude of your address:
+					- http://universimmedia.pagesperso-orange.fr/geo/loc.htm
+					- http://www.findlatitudeandlongitude.com/find-address-from-latitude-and-longitude/
+
+			*/
+
+			// Map Markers
+			var mapMarkers = [{
+				address: "3344 North Torrey Pines Court Suite 300",
+				html: "<strong>SRTI</strong><br>3344 North Torrey Pines Court Suite 300, La Jolla, CA 9203",
+				icon: {
+					image: "img/pin.png",
+					iconsize: [26, 46],
+					iconanchor: [12, 46]
+				},
+				popup: true
+			}];
+
+			// Map Initial Location
+			var initLatitude = 32.8961;
+			var initLongitude = 117.2425;
+
+			// Map Extended Settings
+			var mapSettings = {
+				controls: {
+					panControl: true,
+					zoomControl: true,
+					mapTypeControl: true,
+					scaleControl: true,
+					streetViewControl: true,
+					overviewMapControl: true
+				},
+				scrollwheel: false,
+				markers: mapMarkers,
+				latitude: initLatitude,
+				longitude: initLongitude,
+				zoom: 16
+			};
+
+			var map = $("#googlemaps").gMap(mapSettings);
+
+			// Map Center At
+			var mapCenterAt = function(options, e) {
+				e.preventDefault();
+				$("#googlemaps").gMap("centerAt", options);
+			}
+
+		</script>
+	</body>
+</html>

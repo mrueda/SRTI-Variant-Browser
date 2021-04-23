@@ -1,0 +1,12 @@
+- Use hash for cohorts instead of spaguetti code
+- google custom search by words within the HTML?
+- Fix scrolling (dataTables scrollX has a bug with fixed size)
+- DKFZp434K1323 Gene?
+- $active variable is not defined
+- JSON headers?
+- Complete Genomics data - A bunch of INS do not contain annotation (very hard to catch w/o seq alignment):
+  Thus, they won't appear if people make searches by gene
+   # 1     778302  .       CCTCTGTGCT      CCTCT[CT]GTGCT <= VCF
+   # ins	CT   <= Cypher Annotations
+- I deleted Twitter feed updates because getting developer authentication became tricky
+/var/www/browser/php/twitteroauth/twitteroauth.php
