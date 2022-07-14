@@ -46,12 +46,13 @@ my $logo =
 "<img alt=\"SRTI\" width=\"400\" data-sticky-width=\"300\" src=\"img/scripps-logo_black.png\">";
 
 sub new {
-    my ( $class, $args_sub ) = @_;
+
+    my ( $class, $arg ) = @_;
     my $self = {
-        query  => $args_sub->{query},
-        cohort => $args_sub->{cohort},
-        format => $args_sub->{format},
-        allele => $args_sub->{allele}
+        query  => $arg->{query},
+        cohort => $arg->{cohort},
+        format => $arg->{format},
+        allele => $arg->{allele}
     };
 
     bless $self, $class;
@@ -59,7 +60,8 @@ sub new {
 }
 
 sub submission {
-    my ($self) = @_;
+
+    my $self = shift;
     my $query  = $self->{query};
     my $allele = $self->{allele};
     my $str    = '';
@@ -70,6 +72,7 @@ sub submission {
 }
 
 sub front_page {
+
     my $str = '';
     $str .= html_header('home');
     $str .= html_form();
@@ -79,6 +82,7 @@ sub front_page {
 }
 
 sub beacon_page {
+
     my $str = '';
     $str .= html_header('ga4gh');
     $str .= beacon_form();
@@ -454,6 +458,7 @@ EOF
 #############################################
 
 sub html_footer {
+
     my $str = '';
     $str = << "EOF";
 
@@ -581,6 +586,7 @@ EOF
 #############################################
 
 sub html_results {
+
     my $query  = shift;
     my $allele = shift;
     print_log( $query, 1 );
@@ -618,6 +624,7 @@ EOF
 #############################################
 
 sub google_analytics {
+
     my $str = " 
 <!-- Google Analytics: -->
 <script>
@@ -1225,7 +1232,7 @@ EOF
 
 sub print_summary {
 
-    my ($args_sub) = @_;
+    my $arg = shift;
 
     # Loading a variable to be printed later
     my $str = '';
@@ -1234,12 +1241,12 @@ sub print_summary {
     $str .= "***************************************\n";
     $str .= "\n";
     $str .= "Job id: $job_id\n";
-    $str .= "Query: $args_sub->{query}\n";
+    $str .= "Query: $arg->{query}\n";
     $str .= "\n";
     $str .=
-"Wellderly - Complete_Genomics: $args_sub->{n_var_cg}, SNP: $args_sub->{n_SNP_cg}, Other: $args_sub->{n_Other_cg}
-Wellderly - Illumina: $args_sub->{n_var_illumina}, SNP: $args_sub->{n_SNP_illumina}, Other: $args_sub->{n_Other_illumina}
-Molecular Autopsy: $args_sub->{n_var_molau}, SNP: $args_sub->{n_SNP_molau}, Other: $args_sub->{n_Other_molau}\n";
+"Wellderly - Complete_Genomics: $arg->{n_var_cg}, SNP: $arg->{n_SNP_cg}, Other: $arg->{n_Other_cg}
+Wellderly - Illumina: $arg->{n_var_illumina}, SNP: $arg->{n_SNP_illumina}, Other: $arg->{n_Other_illumina}
+Molecular Autopsy: $arg->{n_var_molau}, SNP: $arg->{n_SNP_molau}, Other: $arg->{n_Other_molau}\n";
 
     my $dir  = $job_dir;
     my $file = $job_dir . '/' . 'stsi_' . $job_id . '.csv';
@@ -1366,6 +1373,7 @@ sub print_mod_JSON {
 #############################################
 
 sub add_header_VCF {
+
     my $header = "##fileformat=VCFv4.2
 ##SRTI-VariantBrowserVersion=$version
 ##INFO=<ID=INFO,Type=String,Description=\"Fields relative to SRTI's Variant Browser=VariationType;Gene;Isoform;Region;Location;Protein;Impact;AlleleFrequencies;AlleleCounts;GenotypeFrequencies;GenotypeCounts\">
@@ -1498,6 +1506,7 @@ EOF
 #############################################
 
 sub dataTables_js {
+
     my $str = '';
     $str = << "EOF";
 
@@ -1689,6 +1698,7 @@ EOF
 #############################################
 
 sub print_log {
+
     my $argument = shift;
     my $html     = shift;                 # 0 or 1
     my $log      = "log/log.txt";
@@ -1709,6 +1719,7 @@ sub print_log {
 }
 
 sub lock {
+
     my ($fh) = @_;
     flock( $fh, LOCK_EX );
 
@@ -1717,6 +1728,7 @@ sub lock {
 }
 
 sub unlock {
+
     my ($fh) = @_;
     flock( $fh, LOCK_UN );
 }
@@ -1760,7 +1772,8 @@ sub submit_cmd {
 #############################################
 
 sub web_services {
-    my ($self)       = @_;
+
+    my $self       = shift;
     my $query        = $self->{query};
     my $cohort       = $self->{cohort};
     my $format       = $self->{format};

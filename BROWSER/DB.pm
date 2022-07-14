@@ -41,12 +41,13 @@ my $data = '/var/www/browser';
 #############################################
 
 sub new {
-    my ( $class, $args_sub ) = @_;
+
+    my ( $class, $arg ) = @_;
     my $self = {
-        chr    => $args_sub->{chr},
-        query  => $args_sub->{query},
-        type   => $args_sub->{type},
-        allele => $args_sub->{allele} || 'off'
+        chr    => $arg->{chr},
+        query  => $arg->{query},
+        type   => $arg->{type},
+        allele => $arg->{allele} // 'off'
     };
 
     bless $self, $class;
@@ -66,6 +67,7 @@ sub new {
 #############################################
 
 sub cohort {
+
     my $self = shift;
     $self->{"cohort"} = shift;
     return $self->{"cohort"};
@@ -85,7 +87,7 @@ sub cohort {
 
 sub get_query_TABIX {
 
-    my ($self) = @_;
+    my $self = shift;
     my $chr    = $self->{chr};
     my $query  = $self->{query};
     my $allele = $self->{allele};
@@ -125,7 +127,7 @@ sub get_query_TABIX {
 
 sub get_query_SQLite {
 
-    my ($self) = @_;
+    my $self = shift;
     my $query  = $self->{query};
     my $field  = $self->{type};
     my $cohort = $self->{cohort};    # New argument
@@ -180,5 +182,4 @@ SQL
     $rows = () if !@$rows;    # Empty result
     return $rows;             # w/o \n
 }
-
 1;
