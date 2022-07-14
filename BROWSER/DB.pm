@@ -69,8 +69,8 @@ sub new {
 sub cohort {
 
     my $self = shift;
-    $self->{"cohort"} = shift;
-    return $self->{"cohort"};
+    $self->{cohort} = shift;
+    return $self->{cohort};
 }
 
 #############################################
